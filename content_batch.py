@@ -32,6 +32,17 @@ TOPIC_TEMPLATES = [
     {"id":8,"title":"从B站视频到产品用户：一个大学生的AI创业实录","hook":"零资金、零人脉的大学生，如何用AI工具创业？","report_key":"policy","pain_point":"大学生创业缺资金缺资源","solution":"用AI开发工具，用内容吸引用户，用数据驱动增长","data_compare":"十五五规划鼓励创新创业，政策红利期","cta":"关注我的创业实录，一起见证从0到1","tags":["创业","大学生","AI工具","内容创业"]}
 ]
 
+def load_topics_from_json(filepath="topics.json"):
+    """从 topics.json 加载选题配置，覆盖默认模板"""
+    if os.path.exists(filepath):
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            if isinstance(data, list) and len(data) > 0:
+                return data
+        except Exception as e:
+            print(f"加载 {filepath} 失败: {e}")
+    return None
 def generate_script(topic):
     report = REPORT_DATA.get(topic.get("report_key","ai_growth"), REPORT_DATA["ai_growth"])
     tags_str = " ".join(["#"+t for t in topic.get("tags",["AI工具","办公效率"])])
@@ -141,6 +152,10 @@ def generate_custom(title, report_key="ai_growth", output_dir="scripts"):
     print(f"  √ 已生成自定义脚本: {p}")
 
 if __name__=="__main__":
+    # 尝试从 topics.json 加载选题配置
+    loaded = load_topics_from_json()
+    if loaded:
+        TOPIC_TEMPLATES[:] = loaded
     parser = argparse.ArgumentParser(description="AI办公效率助手 - 内容脚本批量生成工具")
     parser.add_argument("--list", action="store_true", help="列出所有选题")
     parser.add_argument("--topic", type=int, help="生成指定编号的选题脚本")
