@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HyperFrames - AI办公效率助手视频脚本</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #000; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+.phone-frame { width: 375px; height: 667px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 40px; overflow: hidden; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+.screen { width: 100%; height: 100%; padding: 60px 20px 20px; display: flex; flex-direction: column; justify-content: space-between; }
+.top-bar { position: absolute; top: 0; left: 0; right: 0; height: 50px; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; color: white; font-size: 14px; }
+.content-area { flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: center; color: white; }
+.title { font-size: 28px; font-weight: bold; margin-bottom: 20px; line-height: 1.3; }
+.subtitle { font-size: 16px; opacity: 0.9; margin-bottom: 30px; }
+.data-card { background: rgba(255,255,255,0.2); border-radius: 12px; padding: 15px; margin: 10px 0; backdrop-filter: blur(10px); }
+.data-number { font-size: 36px; font-weight: bold; }
+.data-label { font-size: 14px; opacity: 0.8; }
+.cta-button { background: #ff6b6b; color: white; border: none; padding: 15px 30px; border-radius: 30px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+.bottom-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: space-around; color: white; }
+.progress-bar { position: absolute; bottom: 60px; left: 0; right: 0; height: 4px; background: rgba(255,255,255,0.3); }
+.progress { height: 100%; background: #ff6b6b; width: 0%; transition: width 0.3s; }
+.scene { display: none; }
+.scene.active { display: flex; }
+</style>
+</head>
+<body>
+<div class="phone-frame">
+    <div class="top-bar"><span>AI办公效率助手</span><span>00:00</span></div>
+    <div class="screen">
+        <div class="content-area">
+            <div class="scene active" id="scene1"><div class="title">猎聘报告显示AI岗位需求增长281.6%</div><div class="subtitle">但你知道AI最被低估的用途是什么吗？</div><div class="data-card"><div class="data-number">281.6%</div><div class="data-label">AI岗位需求增长</div></div></div>
+            <div class="scene" id="scene2"><div class="title">项目经理每天5个会</div><div class="subtitle">整理一份纪要要花2小时</div><div class="data-card"><div class="data-number">10小时</div><div class="data-label">每天光整理纪要</div></div></div>
+            <div class="scene" id="scene3"><div class="title">AI帮你3分钟搞定</div><div class="subtitle">上传录音 → AI处理 → 生成纪要</div><div class="data-card"><div class="data-number">3分钟</div><div class="data-label">AI整理纪要</div></div></div>
+            <div class="scene" id="scene4"><div class="title">每周节省47.5小时</div><div class="subtitle">AI工具市场正在爆发</div><div class="data-card"><div class="data-number">43:1</div><div class="data-label">AI人才供需比</div></div></div>
+            <div class="scene" id="scene5"><div class="title">免费试用，效率提升300%</div><div class="subtitle">前100名注册永久Pro权限</div><button class="cta-button">立即注册</button></div>
+        </div>
+    </div>
+    <div class="progress-bar"><div class="progress" id="progress"></div></div>
+    <div class="bottom-bar"><span>首页</span><span>发现</span><span>拍摄</span><span>消息</span><span>我</span></div>
+</div>
+<script>
+const scenes = document.querySelectorAll(".scene");
+const progress = document.getElementById("progress");
+let current = 0;
+const total = scenes.length;
+function showScene(index) { scenes.forEach(s => s.classList.remove("active")); scenes[index].classList.add("active"); progress.style.width = ((index + 1) / total * 100) + "%"; }
+function nextScene() { current = (current + 1) % total; showScene(current); }
+showScene(0); setInterval(nextScene, 3000);
+</script>
+</body></html>
