@@ -121,24 +121,24 @@ def generate_all(output_dir="scripts"):
     for t in TOPIC_TEMPLATES:
         s = generate_script(t)
         p = save_script(s, t["id"], t["title"], output_dir)
-        print(f"  ✅ 已生成: {p}")
+        print(f"  √ 已生成: {p}")
     print(f"\n共生成 {len(TOPIC_TEMPLATES)} 个脚本")
 
 def generate_one(tid, output_dir="scripts"):
     t = next((x for x in TOPIC_TEMPLATES if x["id"]==tid), None)
     if not t:
-        print(f"❌ 未找到选题编号 {tid}")
+        print(f"× 未找到选题编号 {tid}")
         return
     s = generate_script(t)
     p = save_script(s, t["id"], t["title"], output_dir)
-    print(f"  ✅ 已生成: {p}")
+    print(f"  √ 已生成: {p}")
 
 def generate_custom(title, report_key="ai_growth", output_dir="scripts"):
     r = REPORT_DATA.get(report_key, REPORT_DATA["ai_growth"])
     t = {"id":99,"title":title,"hook":f"{r['stat']}：{r['desc']}","report_key":report_key,"pain_point":f"基于{r['source']}的分析","solution":"AI工具提供零成本解决方案","data_compare":"AI工具显著提升效率","cta":"评论区扣1获取工具","tags":["AI工具","自定义主题"]}
     s = generate_script(t)
     p = save_script(s, 99, title, output_dir)
-    print(f"  ✅ 已生成自定义脚本: {p}")
+    print(f"  √ 已生成自定义脚本: {p}")
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description="AI办公效率助手 - 内容脚本批量生成工具")

@@ -118,6 +118,9 @@ footer p{margin-top:15px;font-size:0.85em;opacity:0.6}
   .section-title{font-size:1.6em}
   .pricing-card.popular{transform:none}
 }
+
+/* 制造业线索漏斗 */
+.mfg-funnel{padding:80px 0;background:#f0f7f0;text-align:center}
 </style>
 </head>
 <body>
@@ -240,6 +243,57 @@ footer p{margin-top:15px;font-size:0.85em;opacity:0.6}
   </div>
 </section>
 
+<!-- 制造业线索漏斗 -->
+<section class="mfg-funnel" id="mfg-funnel">
+  <div class="container">
+    <h2 class="section-title">为团队或产线寻求更强大的功能？</h2>
+    <p class="section-subtitle">制造业数字化渗透率不到30%，先行者将获得巨大竞争优势</p>
+    <div class="early-access-form" style="max-width:550px">
+      <div class="early-bonus" style="background:#e8f5e9;border-color:#a5d6a7;color:#1b5e20">🏭 根据十五五展望报告，中小制造企业对年费1K-5K的SaaS接受度最高。告诉我们你的需求，我们优先为你定制。</div>
+      <form id="mfgForm">
+        <div class="form-group">
+          <label>公司/工厂名称 *</label>
+          <input type="text" id="mfgCompany" placeholder="例如：某某五金制品厂" required>
+        </div>
+        <div class="form-group">
+          <label>联系人 *</label>
+          <input type="text" id="mfgContact" placeholder="你的姓名" required>
+        </div>
+        <div class="form-group">
+          <label>联系方式 *</label>
+          <input type="text" id="mfgPhone" placeholder="手机号或微信号" required>
+        </div>
+        <div class="form-group">
+          <label>工厂规模</label>
+          <select id="mfgScale">
+            <option value="">请选择</option>
+            <option value="1-20人">1-20人（小微工厂）</option>
+            <option value="20-100人">20-100人（小型工厂）</option>
+            <option value="100-500人">100-500人（中型工厂）</option>
+            <option value="500人以上">500人以上</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>你最关心的功能（可多选）</label>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
+            <label style="font-weight:normal;display:flex;align-items:center;gap:4px"><input type="checkbox" value="会议纪要"> 会议纪要</label>
+            <label style="font-weight:normal;display:flex;align-items:center;gap:4px"><input type="checkbox" value="生产日报"> 生产日报</label>
+            <label style="font-weight:normal;display:flex;align-items:center;gap:4px"><input type="checkbox" value="巡检报告"> 巡检报告</label>
+            <label style="font-weight:normal;display:flex;align-items:center;gap:4px"><input type="checkbox" value="数据安全"> 数据安全</label>
+            <label style="font-weight:normal;display:flex;align-items:center;gap:4px"><input type="checkbox" value="工人易用性"> 工人易用性</label>
+            <label style="font-weight:normal;display:flex;align-items:center;gap:4px"><input type="checkbox" value="多人协作"> 多人协作</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>补充说明（选填）</label>
+          <input type="text" id="mfgNote" placeholder="例如：希望AI能自动整理车间巡检记录">
+        </div>
+        <button type="submit" class="submit-button" style="background:linear-gradient(135deg,#2e7d32,#4caf50)">提交需求，优先获得定制方案</button>
+      </form>
+      <p style="margin-top:12px;font-size:0.82em;color:#999">我们会根据需求优先级安排开发，24小时内联系你</p>
+    </div>
+  </div>
+</section>
 <!-- 支付方式区 -->
 <section class="payment-methods" id="payment">
   <div class="container">
@@ -417,6 +471,9 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     if (target) { target.scrollIntoView({ behavior: "smooth", block: "start" }); }
   });
 });
+
+// 制造业线索表单提交
+document.getElementById("mfgForm").addEventListener("submit",function(e){e.preventDefault();var c=document.getElementById("mfgCompany").value;var n=document.getElementById("mfgContact").value;alert("✅ 需求已收到！感谢 "+n+"（"+c+"），我们将在24小时内联系你讨论定制方案。");this.reset()});
 </script>
 </body>
 </html>
