@@ -435,28 +435,51 @@ footer p{margin-top:15px;font-size:0.85em;opacity:0.6}
 </div>
 
 <script>
+// 后端 API 地址
+var API_BASE = "https://backend-roan-pi-60.vercel.app";
+
 // 注册表单提交
 document.getElementById("regForm").addEventListener("submit", function(e) {
   e.preventDefault();
   var name = document.getElementById("fname").value;
   var email = document.getElementById("femail").value;
-  var industry = document.getElementById("findustry").value;
-  var position = document.getElementById("fposition").value;
-  var pain = document.getElementById("fpain").value;
+  var password = email; // MVP: 用邮箱作为默认密码
 
-  // 模拟注册成功
-  var msg = "✅ 注册成功！\n\n";
-  msg += "欢迎 " + name + "！\n";
-  msg += "行业：" + industry + "\n";
-  msg += "职位：" + position + "\n\n";
-  msg += "工具链接已发送至 " + email + "\n";
-  msg += "前100名用户享受永久Pro权限！";
+  var submitBtn = this.querySelector("button[type='submit']");
+  var originalText = submitBtn.textContent;
+  submitBtn.textContent = "注册中...";
+  submitBtn.disabled = true;
 
-  alert(msg);
-  this.reset();
+  fetch(API_BASE + "/api/auth/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name: name, email: email, password: password })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.error) {
+      alert("❌ " + data.error);
+    } else {
+      // 保存 token
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
 
-  // 延迟显示用量弹窗（模拟用完免费额度）
-  setTimeout(function() { showModal(); }, 2000);
+      var msg = "✅ 注册成功！\n\n";
+      msg += "欢迎 " + data.user.name + "！\n";
+      msg += "邮箱：" + data.user.email + "\n\n";
+      msg += "前100名用户享受永久Pro权限！";
+      alert(msg);
+      document.getElementById("regForm").reset();
+    }
+  })
+  .catch(function(err) {
+    alert("❌ 网络错误，请稍后重试");
+    console.error(err);
+  })
+  .finally(function() {
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  });
 });
 
 // 用量弹窗
@@ -490,7 +513,16 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
 });
 
 // 制造业线索表单提交
-document.getElementById("mfgForm").addEventListener("submit",function(e){e.preventDefault();var c=document.getElementById("mfgCompany").value;var n=document.getElementById("mfgContact").value;alert("✅ 需求已收到！感谢 "+n+"（"+c+"），我们将在24小时内联系你讨论定制方案。");this.reset()});
+document.getElementById("mfgForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  var company = document.getElementById("mfgCompany").value;
+  var contact = document.getElementById("mfgContact").value;
+  var needs = [];
+  document.querySelectorAll("#mfgForm input[type=checkbox]:checked").forEach(function(cb) { needs.push(cb.value); });
+
+  alert("✅ 需求已收到！\n\n公司：" + company + "\n联系人：" + contact + "\n需求：" + (needs.join("、") || "未选择") + "\n\n我们将在24小时内联系你讨论定制方案。");
+  this.reset();
+});
 </script>
 </body>
 </html>
