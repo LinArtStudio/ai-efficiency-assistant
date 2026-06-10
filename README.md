@@ -1,76 +1,77 @@
-﻿# 🚀 AI办公效率助手
+# AI办公效率助手
 
 > 基于23份行业报告数据，专为中小企业和职场人打造的AI办公效率工具
 
-## 📊 项目简介
+## 项目结构
 
-AI办公效率助手是一个零资金启动的MVP产品，基于对23份行业报告的深度分析，提供智能会议纪要整理和批量周报生成功能。
-
-**核心数据支撑：**
-- AI岗位需求增长281.6%（猎聘2025年度报告）
-- AI人才供需比1:43.1（猎聘报告）
-- 中小企业数字化面临"三缺"（2026两会报告）
-- 十五五规划将数字化转型作为国家战略
-- 制造业数字化渗透率不到30%（AI产业十五五展望报告）
-
-## 🎯 核心战略
-
-**内容吸引垂直人群 → 精准工具留住 → 场景化服务变现 → 行业数据沉淀 → 3年内进入制造业轻量化SaaS**
-
-## 📦 交付物清单
-
-| 文件 | 说明 |
-|------|------|
-| `index.html` | 产品着陆与变现页面（响应式，可直接部署） |
-| `tool.html` | **在线工具页面** — 会议纪要生成、周报生成（可直接使用） |
-| `app.js` | 工具核心逻辑 — AI文本分析与结构化输出 |
-| `report_insights.md` | 行业报告关键洞察分析（6条） |
-| `content_plan.md` | B站两周内容选题计划（8个选题+钩子脚本） |
-| `content_batch.py` | 内容脚本批量生成工具 |
-| `first_week_action_plan.md` | 第一周7天执行清单（含报告依据） |
-| `long_term_assets.md` | 长期资产积累路线图 |
-| `scripts/` | 8个完整B站视频脚本 |
-| `一号项目启动说明.docx` | Word项目启动文档 |
-| `hyperframes_demo.html` | 竖版视频演示 |
-
-## 🔧 使用方式
-
-### 查看着陆页
-直接访问：https://linartstudio.github.io/ai-efficiency-assistant/
-
-### 生成视频脚本
-```bash
-# 列出所有选题
-python content_batch.py --list
-
-# 生成所有脚本
-python content_batch.py --all
-
-# 生成指定选题
-python content_batch.py --topic 1
-
-# 自定义主题
-python content_batch.py --custom "你的主题"
+```
+一号项目/
+├── index.html                  ← 着陆页（GitHub Pages 部署，保留在根目录）
+├── README.md                   ← 本文件
+│
+├── 01-需求文档/                ← 规划、策略、模板
+│   ├── content_plan.md         ← B站两周选题计划
+│   ├── first_week_action_plan.md ← 第一周行动清单
+│   ├── long_term_assets.md     ← 长期资产路线图
+│   ├── report_insights.md      ← 23份报告洞察
+│   ├── user_community_plan.md  ← 社群运营方案
+│   ├── week1_数据复盘模板.md    ← 复盘模板
+│   └── 一号项目启动说明.docx    ← Word启动文档
+│
+├── 02-输出成果/                ← 最终交付物
+│   ├── scripts/                ← 8篇B站视频脚本（含优化版第1集）
+│   ├── bilibili_video01-03_发布素材包.md
+│   ├── 内容追踪表.md
+│   ├── 发布检查清单.md
+│   ├── 数据复盘-20260608.md
+│   ├── tool.html               ← 在线工具页面
+│   └── hyperframes_demo.html   ← 竖版视频演示
+│
+├── 03-过程文件/                ← 代码、工具、中间产物
+│   ├── content_batch.py        ← 脚本批量生成工具
+│   ├── app.js                  ← 后端API（Express）
+│   ├── topics.json             ← 选题配置
+│   ├── pdf_analysis.json       ← PDF分析数据
+│   └── requirements.txt        ← Python依赖
+│
+└── 04-参考资料/                ← 图片素材
+    ├── IMG_321[1].png
+    └── image_115556615[2].jpg  ← 支付二维码
 ```
 
-## 💰 定价策略
+## 产品信息
 
-- **免费版**：每月10次纪要、5份周报
-- **Pro版**：29元/月 或 199元/年
+- **GitHub：** [LinArtStudio/ai-efficiency-assistant](https://github.com/LinArtStudio/ai-efficiency-assistant)
+- **着陆页：** https://linartstudio.github.io/ai-efficiency-assistant/
+- **定价：** 免费版（每月10次纪要+5次周报）/ Pro版 ¥29/月
 
-定价依据：猎聘报告显示AI薪资上涨53.2%，个人效率工具年付费意愿中位数¥200-300
+## 核心功能
 
-## 📈 三年路线
+| 功能 | 状态 |
+|------|------|
+| 智能会议纪要 | 着陆页已展示，后端 API 待接入 |
+| 批量周报生成 | 着陆页已展示，后端 API 待接入 |
+| B站内容矩阵 | 8篇视频脚本已完成，待录制 |
 
-1. **第一年（验证期）**：1000+注册，50+付费，建立内容矩阵
-2. **第二年（深耕期）**：5000+注册，300+付费，制造业SaaS试点
-3. **第三年（转型期）**：推出制造业轻量化SaaS
+## 内容生产流程
 
-## 🏫 关于作者
+1. 选题确认 → `01-需求文档/content_plan.md`
+2. 脚本生成 → `python 03-过程文件/content_batch.py --topic N`
+3. 录制剪辑 → 参考 `02-输出成果/发布检查清单.md`
+4. B站发布 → 参考 `02-输出成果/bilibili_video*_发布素材包.md`
+5. 数据复盘 → 参考 `02-输出成果/内容追踪表.md`
 
-在校大学生独立开发运营，零资金、零人脉起步，用AI开发工具、用内容吸引用户、用数据驱动增长。
+## 使用方式
 
-## 📧 联系方式
+```bash
+# 生成视频脚本
+python 03-过程文件/content_batch.py --list
+python 03-过程文件/content_batch.py --all
+python 03-过程文件/content_batch.py --topic 1
+```
 
-- 邮箱：15902234202@163.com
-- GitHub：https://github.com/LinArtStudio/ai-efficiency-assistant
+## 更新日志
+
+- 2026-06-10 - 整理为四层目录结构
+- 2026-06-09 - 添加在线工具页面（tool.html）
+- 2026-06-08 - 初始化项目，完成全部8篇视频脚本
