@@ -64,10 +64,12 @@
 ## 使用方式
 
 ```bash
-# 生成视频脚本
+# 生成视频脚本（从项目根目录运行）
 python 03-过程文件/content_batch.py --list
 python 03-过程文件/content_batch.py --all
 python 03-过程文件/content_batch.py --topic 1
+
+# 脚本自动输出到 02-输出成果/scripts/
 ```
 
 ## 更新日志

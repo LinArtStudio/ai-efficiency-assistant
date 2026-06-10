@@ -12,6 +12,12 @@ AI办公效率助手 - B站内容脚本半自动生成工具
 import json, os, argparse
 from datetime import datetime
 
+# 基于脚本所在目录定位文件
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
+TOPICS_JSON = os.path.join(SCRIPT_DIR, "topics.json")
+DEFAULT_OUTPUT_DIR = os.path.join(PROJECT_ROOT, "02-输出成果", "scripts")
+
 REPORT_DATA = {
     "ai_growth": {"stat":"281.6%","desc":"AI岗位需求增长","source":"猎聘2025年度人才供需趋势报告","detail":"AI人才供需比达到1:43.1，人才极度紧缺；2026年AI薪资中位数较2025年上涨53.2%"},
     "sme_pain": {"stat":"三缺","desc":"中小企业数字化面临缺资金、缺技术、缺人才","source":"2026年两会政府工作报告","detail":"中小企业数字化转型的核心障碍，办公效率低下是最直接痛点"},
@@ -32,8 +38,10 @@ TOPIC_TEMPLATES = [
     {"id":8,"title":"从B站视频到产品用户：一个大学生的AI创业实录","hook":"零资金、零人脉的大学生，如何用AI工具创业？","report_key":"policy","pain_point":"大学生创业缺资金缺资源","solution":"用AI开发工具，用内容吸引用户，用数据驱动增长","data_compare":"十五五规划鼓励创新创业，政策红利期","cta":"关注我的创业实录，一起见证从0到1","tags":["创业","大学生","AI工具","内容创业"]}
 ]
 
-def load_topics_from_json(filepath="topics.json"):
+def load_topics_from_json(filepath=None):
     """从 topics.json 加载选题配置，覆盖默认模板"""
+    if filepath is None:
+        filepath = TOPICS_JSON
     if os.path.exists(filepath):
         try:
             with open(filepath, "r", encoding="utf-8") as f:
@@ -110,7 +118,9 @@ AI办公效率助手 - 让每个人都用得起AI
 - {report['source']}
 """
 
-def save_script(script, topic_id, title, output_dir="scripts"):
+def save_script(script, topic_id, title, output_dir=None):
+    if output_dir is None:
+        output_dir = DEFAULT_OUTPUT_DIR
     os.makedirs(output_dir, exist_ok=True)
     safe = title.replace("/","-").replace("\\","-").replace(":","-").replace("?","").replace('"',"").replace("*","")
     path = os.path.join(output_dir, f"{topic_id:02d}_{safe[:30]}.md")
@@ -127,7 +137,9 @@ def list_topics():
         print(f"      核心数据：{r.get('stat','')} {r.get('desc','')}")
         print()
 
-def generate_all(output_dir="scripts"):
+def generate_all(output_dir=None):
+    if output_dir is None:
+        output_dir = DEFAULT_OUTPUT_DIR
     print("\n=== 批量生成视频脚本 ===\n")
     for t in TOPIC_TEMPLATES:
         s = generate_script(t)
@@ -135,7 +147,9 @@ def generate_all(output_dir="scripts"):
         print(f"  √ 已生成: {p}")
     print(f"\n共生成 {len(TOPIC_TEMPLATES)} 个脚本")
 
-def generate_one(tid, output_dir="scripts"):
+def generate_one(tid, output_dir=None):
+    if output_dir is None:
+        output_dir = DEFAULT_OUTPUT_DIR
     t = next((x for x in TOPIC_TEMPLATES if x["id"]==tid), None)
     if not t:
         print(f"× 未找到选题编号 {tid}")
@@ -144,7 +158,9 @@ def generate_one(tid, output_dir="scripts"):
     p = save_script(s, t["id"], t["title"], output_dir)
     print(f"  √ 已生成: {p}")
 
-def generate_custom(title, report_key="ai_growth", output_dir="scripts"):
+def generate_custom(title, report_key="ai_growth", output_dir=None):
+    if output_dir is None:
+        output_dir = DEFAULT_OUTPUT_DIR
     r = REPORT_DATA.get(report_key, REPORT_DATA["ai_growth"])
     t = {"id":99,"title":title,"hook":f"{r['stat']}：{r['desc']}","report_key":report_key,"pain_point":f"基于{r['source']}的分析","solution":"AI工具提供零成本解决方案","data_compare":"AI工具显著提升效率","cta":"评论区扣1获取工具","tags":["AI工具","自定义主题"]}
     s = generate_script(t)
@@ -162,7 +178,7 @@ if __name__=="__main__":
     parser.add_argument("--all", action="store_true", help="批量生成所有选题脚本")
     parser.add_argument("--custom", type=str, help="自定义主题生成脚本")
     parser.add_argument("--report", type=str, default="ai_growth", help="自定义主题的报告依据key")
-    parser.add_argument("--output", type=str, default="scripts", help="输出目录")
+    parser.add_argument("--output", type=str, default=DEFAULT_OUTPUT_DIR, help="输出目录")
     args = parser.parse_args()
     if args.list:
         list_topics()
