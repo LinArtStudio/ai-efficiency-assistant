@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI办公效率助手 - 在线工具</title>
+<meta name="description" content="免费使用AI会议纪要整理和周报生成工具，提升办公效率。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.6;color:#333;background:#f5f6fa}
+.container{max-width:900px;margin:0 auto;padding:0 20px}
+
+/* 导航 */
+header{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:15px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 15px rgba(0,0,0,0.15)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.3em;font-weight:700;text-decoration:none;color:#fff}
+.nav-links a{color:#fff;text-decoration:none;margin-left:20px;font-size:0.9em;opacity:0.9}
+.nav-links a:hover{opacity:1}
+
+/* 标签页 */
+.tabs{display:flex;gap:0;margin:30px 0 0;justify-content:center}
+.tab-btn{padding:12px 30px;background:#fff;border:2px solid #e0e0e0;cursor:pointer;font-size:1em;font-weight:600;color:#666;transition:all 0.3s}
+.tab-btn:first-child{border-radius:10px 0 0 10px}
+.tab-btn:last-child{border-radius:0 10px 10px 0}
+.tab-btn.active{background:#667eea;color:#fff;border-color:#667eea}
+
+/* 工具区 */
+.tool-section{display:none;padding:25px 0}
+.tool-section.active{display:block}
+.tool-card{background:#fff;border-radius:12px;padding:30px;box-shadow:0 3px 15px rgba(0,0,0,0.06);margin-bottom:20px}
+.tool-card h2{font-size:1.5em;margin-bottom:8px;color:#333}
+.tool-card .desc{color:#666;margin-bottom:20px;font-size:0.95em}
+
+/* 表单 */
+textarea{width:100%;min-height:200px;padding:15px;border:2px solid #e0e0e0;border-radius:10px;font-size:0.95em;font-family:inherit;resize:vertical;transition:border-color 0.3s}
+textarea:focus{outline:none;border-color:#667eea}
+label{display:block;font-weight:600;margin-bottom:6px;color:#333}
+.form-group{margin-bottom:18px}
+
+/* 按钮 */
+.btn-primary{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:14px 35px;border-radius:30px;font-size:1em;font-weight:700;cursor:pointer;transition:all 0.3s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 5px 20px rgba(102,126,234,0.4)}
+.btn-secondary{background:#f0f0f0;color:#333;border:none;padding:10px 25px;border-radius:20px;font-size:0.9em;cursor:pointer;margin-left:10px}
+.btn-secondary:hover{background:#e0e0e0}
+
+/* 结果区 */
+.result-box{display:none;margin-top:20px}
+.result-content{background:#1e1e2e;color:#d4d4d8;padding:20px;border-radius:10px;font-family:'Cascadia Code','Fira Code',monospace;font-size:0.9em;white-space:pre-wrap;max-height:500px;overflow-y:auto;line-height:1.8}
+.result-actions{margin-top:12px;display:flex;gap:10px}
+
+/* 使用统计 */
+.usage-bar{background:#fff;border-radius:10px;padding:15px 20px;margin:20px 0;box-shadow:0 2px 10px rgba(0,0,0,0.04);text-align:center;font-size:0.9em}
+
+/* 示例按钮 */
+.example-btn{background:none;border:1px dashed #667eea;color:#667eea;padding:8px 16px;border-radius:20px;font-size:0.85em;cursor:pointer;margin:5px}
+.example-btn:hover{background:#f0f0ff}
+
+/* 页脚 */
+footer{background:#2d2d2d;color:#fff;padding:30px 0;text-align:center;margin-top:40px;font-size:0.85em;opacity:0.8}
+
+@media(max-width:768px){
+  .tabs{flex-direction:column;align-items:center}
+  .tab-btn{border-radius:10px;width:80%;margin-bottom:-2px}
+  .result-actions{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="container">
+    <a href="../index.html" class="logo">🚀 AI办公效率助手</a>
+    <div class="nav-links">
+      <a href="../index.html#features">功能</a>
+      <a href="../index.html#pricing">定价</a>
+      <a href="../02-输出成果/tool.html">在线工具</a>
+    </div>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('meeting')">🎤 会议纪要</button>
+    <button class="tab-btn" onclick="switchTab('report')">📊 周报生成</button>
+  </div>
+
+  <!-- 会议纪要 -->
+  <section class="tool-section active" id="meeting-section">
+    <div class="tool-card">
+      <h2>🎤 智能会议纪要生成</h2>
+      <p class="desc">粘贴会议录音转文字或会议记录，AI自动提取要点、决策和待办事项</p>
+
+      <div class="form-group">
+        <label>会议内容 *</label>
+        <textarea id="meetingText" placeholder="粘贴会议录音转文字或会议记录...&#10;&#10;示例：&#10;张三：这周的接口需要在周三前完成联调&#10;李四：UI设计稿今天会出，确认后可以开始切图&#10;王五：决定采用方案A，下周一开始开发&#10;..."></textarea>
+      </div>
+
+      <div>
+        <span style="font-size:0.85em;color:#999;margin-right:10px">快速填充：</span>
+        <button class="example-btn" onclick="fillMeetingExample(1)">示例1：项目周会</button>
+        <button class="example-btn" onclick="fillMeetingExample(2)">示例2：需求评审</button>
+      </div>
+
+      <div style="margin-top:20px">
+        <button class="btn-primary" onclick="generateMeeting()">生成会议纪要 →</button>
+      </div>
+
+      <div class="result-box" id="meetingOutput">
+        <div class="result-actions">
+          <button class="btn-primary" onclick="copyToClipboard('meetingResult')">📋 复制内容</button>
+          <button class="btn-secondary" onclick="downloadMarkdown('meetingResult', '会议纪要')">⬇ 下载 .md</button>
+        </div>
+        <pre class="result-content" id="meetingResult"></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- 周报生成 -->
+  <section class="tool-section" id="report-section">
+    <div class="tool-card">
+      <h2>📊 智能周报生成</h2>
+      <p class="desc">输入本周工作记录关键词，AI自动生成结构化专业周报</p>
+
+      <div class="form-group">
+        <label>本周工作记录 *</label>
+        <textarea id="workLog" placeholder="输入本周做了什么，每行一条...&#10;&#10;示例：&#10;完成用户登录模块开发&#10;修复首页加载慢的问题&#10;推进需求文档评审&#10;..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>下周计划（选填）</label>
+        <textarea id="nextPlan" placeholder="下周计划做什么...&#10;&#10;示例：&#10;开发支付功能&#10;编写单元测试&#10;..." style="min-height:100px"></textarea>
+      </div>
+
+      <div>
+        <button class="btn-primary" onclick="generateReport()">生成周报 →</button>
+      </div>
+
+      <div class="result-box" id="reportOutput">
+        <div class="result-actions">
+          <button class="btn-primary" onclick="copyToClipboard('reportResult')">📋 复制内容</button>
+          <button class="btn-secondary" onclick="downloadMarkdown('reportResult', '工作周报')">⬇ 下载 .md</button>
+        </div>
+        <pre class="result-content" id="reportResult"></pre>
+      </div>
+    </div>
+  </section>
+
+  <div class="usage-bar" id="usageStats"></div>
+</div>
+
+<footer>
+  <p>© 2026 AI办公效率助手 · 在校大学生创业项目</p>
+  <p style="margin-top:8px">免费使用，让每个人都用得起AI</p>
+</footer>
+
+<script src="../03-过程文件/app.js"></script>
+<script>
+// 标签页切换
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
+  if (tab === 'meeting') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('meeting-section').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('report-section').classList.add('active');
+  }
+}
+
+// 会议纪要生成
+function generateMeeting() {
+  const text = document.getElementById('meetingText').value;
+  if (!text.trim()) { alert('请输入会议内容'); return; }
+  const minutes = generateMeetingMinutes(text);
+  const md = minutesToMarkdown(minutes);
+  document.getElementById('meetingResult').textContent = md;
+  document.getElementById('meetingOutput').style.display = 'block';
+  const usage = trackUsage('meeting');
+  updateUsageDisplay(usage);
+}
+
+// 周报生成
+function generateReport() {
+  const workLog = document.getElementById('workLog').value;
+  const plan = document.getElementById('nextPlan').value;
+  if (!workLog.trim()) { alert('请输入本周工作记录'); return; }
+  const report = generateWeeklyReport(workLog, plan);
+  document.getElementById('reportResult').textContent = report;
+  document.getElementById('reportOutput').style.display = 'block';
+  const usage = trackUsage('report');
+  updateUsageDisplay(usage);
+}
+
+// 示例填充
+function fillMeetingExample(n) {
+  const examples = {
+    1: `张三：本周进度汇报，用户模块开发完成80%，剩余权限管理部分
+李四：UI设计稿已全部完成，等待开发切图
+王五：测试环境部署完成，可以开始集成测试
+张三：决定下周一开始集成测试，李四负责跟进UI还原度
+李四：需要确认支付接口的对接方案，周三前给出结论
+王五：负责准备测试用例，周四前提交评审
+张三：下周五进行上线前的全量回归测试
+李四：同意这个计划，我会提前准备好所有设计资源
+王五：没问题，测试用例会按时完成`,
+    2: `产品经理：这次需求评审主要是电商模块的改版
+开发A：首页轮播图需要支持视频，技术上可行
+开发B：商品详情页要加3D展示，工作量较大需要2天
+测试：需要准备不同机型的兼容性测试
+产品经理：决定首页轮播先支持图片，视频版下期迭代
+开发A：同意，这样可以按时上线
+开发B：3D展示确认用Three.js方案，需要前端支持
+产品经理：下周三之前完成开发，周四提测
+测试：收到，我会提前准备测试环境和用例`
+  };
+  document.getElementById('meetingText').value = examples[n] || '';
+}
+
+// 下载Markdown文件
+function downloadMarkdown(elementId, filename) {
+  const text = document.getElementById(elementId).textContent;
+  const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${filename}_${new Date().toISOString().slice(0,10)}.md`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
