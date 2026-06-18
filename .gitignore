@@ -1,41 +1,33 @@
-﻿# 系统文件
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
 .DS_Store
-Thumbs.db
-desktop.ini
-*.swp
-*.swo
-*~
+*.pem
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.egg-info/
-dist/
-build/
-*.egg
-.eggs/
-*.whl
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# 虚拟环境
-venv/
-.venv/
-env/
+# local env files
+.env*.local
 
-# IDE
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
+# vercel
+.vercel
 
-# Node
-node_modules/
-package-lock.json
-
-# 临时文件
-test_output/
-test_output2/
-test_gen/
-*.tmp
-*.bak
-*.log
+# typescript
+*.tsbuildinfo
+next-env.d.ts

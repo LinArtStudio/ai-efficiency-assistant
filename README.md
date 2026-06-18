@@ -1,79 +1,114 @@
-# AI办公效率助手
+# AI周报助手
 
-> 基于23份行业报告数据，专为中小企业和职场人打造的AI办公效率工具
+> 用AI 3分钟生成专业周报，让你准时下班
 
-## 项目结构
+## 功能特点
 
-```
-一号项目/
-├── index.html                  ← 着陆页（GitHub Pages 部署，保留在根目录）
-├── README.md                   ← 本文件
-│
-├── 01-需求文档/                ← 规划、策略、模板
-│   ├── content_plan.md         ← B站两周选题计划
-│   ├── first_week_action_plan.md ← 第一周行动清单
-│   ├── long_term_assets.md     ← 长期资产路线图
-│   ├── report_insights.md      ← 23份报告洞察
-│   ├── user_community_plan.md  ← 社群运营方案
-│   ├── week1_数据复盘模板.md    ← 复盘模板
-│   └── 一号项目启动说明.docx    ← Word启动文档
-│
-├── 02-输出成果/                ← 最终交付物
-│   ├── scripts/                ← 8篇B站视频脚本（含优化版第1集）
-│   ├── bilibili_video01-03_发布素材包.md
-│   ├── 内容追踪表.md
-│   ├── 发布检查清单.md
-│   ├── 数据复盘-20260608.md
-│   ├── tool.html               ← 在线工具页面
-│   └── hyperframes_demo.html   ← 竖版视频演示
-│
-├── 03-过程文件/                ← 代码、工具、中间产物
-│   ├── content_batch.py        ← 脚本批量生成工具
-│   ├── app.js                  ← 后端API（Express）
-│   ├── topics.json             ← 选题配置
-│   ├── pdf_analysis.json       ← PDF分析数据
-│   └── requirements.txt        ← Python依赖
-│
-└── 04-参考资料/                ← 图片素材
-    ├── IMG_321[1].png
-    └── image_115556615[2].jpg  ← 支付二维码
-```
+- ⚡ **极速生成**：3分钟生成完整周报
+- 🎯 **智能优化**：AI自动提炼亮点，突出工作成果
+- 📄 **多格式导出**：支持Word、纯文本一键导出
+- 🎨 **多模板选择**：标准、项目、简洁三种模板
+- 💰 **免费使用**：每日3次免费额度
 
-## 产品信息
+## 技术栈
 
-- **GitHub：** [LinArtStudio/ai-efficiency-assistant](https://github.com/LinArtStudio/ai-efficiency-assistant)
-- **着陆页：** https://linartstudio.github.io/ai-efficiency-assistant/
-- **定价：** 免费版（每月10次纪要+5次周报）/ Pro版 ¥29/月
+- **前端**：Next.js 14 + React 18 + Tailwind CSS
+- **后端**：Next.js API Routes
+- **AI**：OpenAI GPT-4 / 文心一言 / 通义千问
+- **部署**：Vercel / Cloudflare Pages
 
-## 核心功能
+## 快速开始
 
-| 功能 | 状态 |
-|------|------|
-| 智能会议纪要 | 着陆页已展示，后端 API 待接入 |
-| 批量周报生成 | 着陆页已展示，后端 API 待接入 |
-| B站内容矩阵 | 8篇视频脚本已完成，待录制 |
-
-## 内容生产流程
-
-1. 选题确认 → `01-需求文档/content_plan.md`
-2. 脚本生成 → `python 03-过程文件/content_batch.py --topic N`
-3. 录制剪辑 → 参考 `02-输出成果/发布检查清单.md`
-4. B站发布 → 参考 `02-输出成果/bilibili_video*_发布素材包.md`
-5. 数据复盘 → 参考 `02-输出成果/内容追踪表.md`
-
-## 使用方式
+### 1. 安装依赖
 
 ```bash
-# 生成视频脚本（从项目根目录运行）
-python 03-过程文件/content_batch.py --list
-python 03-过程文件/content_batch.py --all
-python 03-过程文件/content_batch.py --topic 1
-
-# 脚本自动输出到 02-输出成果/scripts/
+npm install
 ```
 
-## 更新日志
+### 2. 配置环境变量
 
-- 2026-06-10 - 整理为四层目录结构
-- 2026-06-09 - 添加在线工具页面（tool.html）
-- 2026-06-08 - 初始化项目，完成全部8篇视频脚本
+复制 `.env.example` 为 `.env.local`，填入你的API密钥：
+
+```bash
+cp .env.example .env.local
+```
+
+编辑 `.env.local`：
+
+```env
+# OpenAI API Key
+OPENAI_API_KEY=sk-your-api-key-here
+
+# 或者使用文心一言
+# OPENAI_BASE_URL=https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop
+# OPENAI_API_KEY=your-wenxin-key
+
+# 或者使用通义千问
+# OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+# OPENAI_API_KEY=your-dashscope-key
+```
+
+### 3. 启动开发服务器
+
+```bash
+npm run dev
+```
+
+访问 http://localhost:3000
+
+### 4. 构建生产版本
+
+```bash
+npm run build
+npm start
+```
+
+## 部署到Vercel
+
+1. Fork 本仓库
+2. 登录 [vercel.com](https://vercel.com)
+3. 点击 "New Project" → 选择你的仓库
+4. 添加环境变量：`OPENAI_API_KEY`
+5. 点击 "Deploy"
+
+## 部署到Cloudflare Pages
+
+1. 运行 `npm run build`
+2. 登录 [dash.cloudflare.com](https://dash.cloudflare.com)
+3. 点击 "Workers & Pages" → "Create Application" → "Pages"
+4. 上传 `out` 文件夹
+5. 添加环境变量
+
+## 目录结构
+
+```
+ai-weekly-report/
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── generate/route.ts  # AI生成API
+│   │   │   └── export/route.ts    # 导出API
+│   │   ├── generate/page.tsx      # 生成页面
+│   │   ├── layout.tsx             # 布局
+│   │   ├── page.tsx               # 首页
+│   │   └── globals.css            # 全局样式
+│   └── lib/
+│       └── ai.ts                  # AI接口
+├── public/                        # 静态资源
+├── package.json
+├── tailwind.config.ts
+└── tsconfig.json
+```
+
+## 许可证
+
+MIT License
+
+## 联系方式
+
+- 小红书：@AI效率官
+- 微信：添加客服微信
+
+---
+
+Made with ❤️ by AI
