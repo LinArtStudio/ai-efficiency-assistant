@@ -1,11 +1,18 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI办公效率助手 - 让每个人都用得起AI</title>
 <meta name="description" content="基于23份行业报告数据，专为中小企业和职场人打造的AI办公效率工具。智能会议纪要、批量周报生成，29元/月。">
-<meta name="keywords" content="AI办公效率助手,会议纪要整理,周报生成,AI工具,中小企业,数字化转型">
+<meta name="keywords" content="AI办公效率助手,会议纪要整理,周报生成,AI工具,中小企业,数字化转型,十五五规划">
+<meta property="og:title" content="AI办公效率助手 - 让每个人都用得起AI">
+<meta property="og:description" content="基于23份行业报告数据，专为中小企业打造的AI办公效率工具。智能会议纪要、批量周报生成，29元/月。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://linartstudio.github.io/ai-efficiency-assistant/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI办公效率助手 - 让每个人都用得起AI">
+<meta name="twitter:description" content="基于23份行业报告数据，专为中小企业打造的AI办公效率工具。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 <!-- 百度统计 -->
 <script>
@@ -21,77 +28,107 @@ var _hmt = _hmt || [];
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.6;color:#333}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* 导航栏 */
 header{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:15px 0;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,0.15)}
 nav{display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:1.4em;font-weight:700}
-.nav-links a{color:#fff;text-decoration:none;margin-left:25px;font-size:0.95em;opacity:0.9}
+.logo{font-size:1.4em;font-weight:700;letter-spacing:1px}
+.nav-links a{color:#fff;text-decoration:none;margin-left:25px;font-size:0.95em;opacity:0.9;transition:opacity 0.3s}
 .nav-links a:hover{opacity:1}
-.hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:140px 0 80px;text-align:center}
+
+/* 首屏英雄区 */
+.hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:140px 0 80px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 .hero h1{font-size:2.8em;margin-bottom:20px;line-height:1.3;font-weight:800}
-.hero .subtitle{font-size:1.15em;opacity:0.9;max-width:700px;margin:0 auto 35px}
+.hero .subtitle{font-size:1.15em;opacity:0.9;max-width:700px;margin:0 auto 35px;line-height:1.7}
 .hero-stats{display:flex;justify-content:center;gap:40px;margin-top:30px;flex-wrap:wrap}
-.stat-item{text-align:center;background:rgba(255,255,255,0.12);padding:20px 30px;border-radius:12px;min-width:140px}
-.stat-number{font-size:2.2em;font-weight:700;color:#ffd700}
+.stat-item{text-align:center;background:rgba(255,255,255,0.12);padding:20px 30px;border-radius:12px;backdrop-filter:blur(10px);min-width:140px}
+.stat-number{font-size:2.2em;font-weight:700;display:block;color:#ffd700}
 .stat-label{font-size:0.85em;opacity:0.85;margin-top:5px}
-.cta-button{display:inline-block;background:#ff6b6b;color:#fff;padding:16px 45px;border-radius:30px;text-decoration:none;font-size:1.15em;font-weight:700;margin-top:35px}
-.report-badge{display:inline-block;background:rgba(255,255,255,0.15);padding:8px 20px;border-radius:20px;font-size:0.85em;margin-bottom:20px}
+.cta-button{display:inline-block;background:#ff6b6b;color:#fff;padding:16px 45px;border-radius:30px;text-decoration:none;font-size:1.15em;font-weight:700;margin-top:35px;transition:all 0.3s;box-shadow:0 4px 15px rgba(255,107,107,0.4)}
+.cta-button:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(255,107,107,0.5)}
+.report-badge{display:inline-block;background:rgba(255,255,255,0.15);padding:8px 20px;border-radius:20px;font-size:0.85em;margin-bottom:20px;border:1px solid rgba(255,255,255,0.2)}
+
+/* 功能区 */
 .features{padding:80px 0;background:#f8f9fa}
-.section-title{text-align:center;font-size:2.2em;margin-bottom:15px;font-weight:700}
-.section-subtitle{text-align:center;color:#666;margin-bottom:50px}
+.section-title{text-align:center;font-size:2.2em;margin-bottom:15px;font-weight:700;color:#333}
+.section-subtitle{text-align:center;color:#666;margin-bottom:50px;font-size:1.05em}
 .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
-.feature-card{background:#fff;padding:35px;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.06)}
+.feature-card{background:#fff;padding:35px;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.06);transition:transform 0.3s}
+.feature-card:hover{transform:translateY(-5px)}
 .feature-icon{font-size:2.5em;margin-bottom:15px}
 .feature-card h3{font-size:1.3em;margin-bottom:12px;color:#667eea}
-.feature-card p{color:#666;line-height:1.8}
-.report-tag{display:inline-block;background:#f0f0ff;color:#667eea;padding:3px 10px;border-radius:10px;font-size:0.78em;margin-top:10px}
+.feature-card p{color:#666;line-height:1.8;font-size:0.95em}
+.feature-card .report-tag{display:inline-block;background:#f0f0ff;color:#667eea;padding:3px 10px;border-radius:10px;font-size:0.78em;margin-top:10px}
+
+/* 数据证言区 */
 .testimonials{padding:80px 0;background:#fff}
 .testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px}
-.testimonial-card{background:#f8f9fa;padding:30px;border-radius:12px;border-left:4px solid #667eea}
+.testimonial-card{background:#f8f9fa;padding:30px;border-radius:12px;border-left:4px solid #667eea;transition:transform 0.3s}
+.testimonial-card:hover{transform:translateY(-3px)}
+.testimonial-text{font-style:italic;color:#555;margin-bottom:15px;line-height:1.8}
 .testimonial-data{font-size:1.5em;font-weight:700;color:#667eea;margin-bottom:8px}
-.testimonial-text{font-style:italic;color:#555;margin-bottom:15px}
 .testimonial-source{font-size:0.85em;color:#999}
+
+/* 定价区 */
 .pricing{padding:80px 0;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
 .pricing .section-title{color:#fff}
 .pricing .section-subtitle{color:rgba(255,255,255,0.8)}
 .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;max-width:750px;margin:0 auto}
-.pricing-card{background:rgba(255,255,255,0.1);padding:35px;border-radius:12px;text-align:center}
+.pricing-card{background:rgba(255,255,255,0.1);padding:35px;border-radius:12px;text-align:center;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);transition:transform 0.3s}
+.pricing-card:hover{transform:translateY(-5px)}
 .pricing-card.popular{background:rgba(255,255,255,0.2);transform:scale(1.03);position:relative;border:2px solid rgba(255,255,255,0.4)}
 .popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#ff6b6b;color:#fff;padding:5px 22px;border-radius:20px;font-size:0.85em;font-weight:700}
 .pricing-card h3{font-size:1.6em;margin-bottom:15px}
 .price{font-size:2.8em;font-weight:700;margin-bottom:5px}
 .price-unit{font-size:0.9em;opacity:0.8;margin-bottom:20px}
 .pricing-features{list-style:none;margin-bottom:25px;text-align:left}
-.pricing-features li{padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
+.pricing-features li{padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.1);font-size:0.95em}
 .pricing-features li::before{content:"✅ ";margin-right:8px}
-.pricing-button{display:inline-block;background:#fff;color:#667eea;padding:14px 35px;border-radius:30px;text-decoration:none;font-weight:700}
-.data-source{background:rgba(255,255,255,0.1);padding:25px;border-radius:12px;margin-top:40px;text-align:center;font-size:0.9em;max-width:700px;margin-left:auto;margin-right:auto}
+.pricing-button{display:inline-block;background:#fff;color:#667eea;padding:14px 35px;border-radius:30px;text-decoration:none;font-weight:700;transition:all 0.3s}
+.pricing-button:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(0,0,0,0.2)}
+.data-source{background:rgba(255,255,255,0.1);padding:25px;border-radius:12px;margin-top:40px;text-align:center;font-size:0.9em;max-width:700px;margin-left:auto;margin-right:auto;border:1px solid rgba(255,255,255,0.15)}
+
+/* 支付方式区 */
 .payment-methods{padding:80px 0;background:#f8f9fa}
 .payment-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;max-width:800px;margin:0 auto}
 .payment-card{background:#fff;padding:30px;border-radius:12px;text-align:center;box-shadow:0 3px 15px rgba(0,0,0,0.05)}
-.payment-card h4{font-size:1.15em;margin-bottom:12px}
-.payment-card p{color:#666;font-size:0.9em}
+.payment-card h4{font-size:1.15em;margin-bottom:12px;color:#333}
+.payment-card p{color:#666;font-size:0.9em;line-height:1.6}
 .qr-placeholder{width:150px;height:150px;background:#f0f0f0;border:2px dashed #ccc;border-radius:12px;margin:15px auto;display:flex;align-items:center;justify-content:center;color:#999;font-size:0.85em}
+
+/* 注册区 */
 .early-access{padding:80px 0;background:#fff;text-align:center}
-.early-access-form{max-width:500px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 5px 25px rgba(0,0,0,0.08)}
-.early-bonus{background:#fff9e6;border:1px solid #ffe0b2;border-radius:8px;padding:12px;margin-bottom:20px;font-size:0.9em;color:#e65100}
-.submit-button{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:15px 40px;border-radius:30px;font-size:1.05em;font-weight:700;width:100%;cursor:pointer;display:block;text-align:center;text-decoration:none}
-.mfg-funnel{padding:80px 0;background:#f0f7f0;text-align:center}
+.early-access-form{max-width:500px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 5px 25px rgba(0,0,0,0.08);border:1px solid #eee}
 .form-group{margin-bottom:18px;text-align:left}
-.form-group label{display:block;margin-bottom:6px;font-weight:700;font-size:0.9em}
-.form-group input,.form-group select{width:100%;padding:12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95em}
-footer{background:#2d2d2d;color:#fff;padding:40px 0;text-align:center}
-.footer-links a{color:#fff;text-decoration:none;margin:0 15px;font-size:0.9em;opacity:0.8}
-.footer-links a:hover{opacity:1}
-footer p{margin-top:15px;font-size:0.85em;opacity:0.6}
-.footer-disclaimer{font-size:0.8em;opacity:0.5;margin-top:10px;max-width:600px;margin-left:auto;margin-right:auto}
+.form-group label{display:block;margin-bottom:6px;font-weight:700;font-size:0.9em;color:#333}
+.form-group input,.form-group select{width:100%;padding:12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.95em;transition:border-color 0.3s}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,0.1)}
+.submit-button{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:15px 40px;border-radius:30px;font-size:1.05em;font-weight:700;width:100%;cursor:pointer;transition:all 0.3s}
+.submit-button:hover{transform:translateY(-2px);box-shadow:0 5px 20px rgba(102,126,234,0.4)}
+.early-bonus{background:#fff9e6;border:1px solid #ffe0b2;border-radius:8px;padding:12px;margin-bottom:20px;font-size:0.9em;color:#e65100}
+
+/* 用量弹窗 */
 .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:2000;justify-content:center;align-items:center}
 .modal-overlay.show{display:flex}
-.modal-content{background:#fff;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center}
+.modal-content{background:#fff;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;position:relative;animation:modalIn 0.3s ease}
+@keyframes modalIn{from{transform:scale(0.9);opacity:0}to{transform:scale(1);opacity:1}}
 .modal-close{position:absolute;top:15px;right:20px;font-size:1.5em;cursor:pointer;color:#999;background:none;border:none}
-.modal-content h3{font-size:1.4em;margin-bottom:15px}
+.modal-content h3{font-size:1.4em;margin-bottom:15px;color:#333}
 .modal-content .savings{font-size:2.2em;font-weight:700;color:#667eea;margin:15px 0}
 .modal-content p{color:#666;line-height:1.7;margin-bottom:20px}
-.modal-content .upgrade-btn{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:14px 35px;border-radius:30px;text-decoration:none;font-weight:700;border:none;cursor:pointer;font-size:1em}
+.modal-content .upgrade-btn{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:14px 35px;border-radius:30px;text-decoration:none;font-weight:700;transition:all 0.3s;border:none;cursor:pointer;font-size:1em}
+.modal-content .upgrade-btn:hover{transform:scale(1.05)}
+
+/* 页脚 */
+footer{background:#2d2d2d;color:#fff;padding:40px 0;text-align:center}
+.footer-links a{color:#fff;text-decoration:none;margin:0 15px;font-size:0.9em;opacity:0.8;transition:opacity 0.3s}
+.footer-links a:hover{opacity:1}
+footer p{margin-top:15px;font-size:0.85em;opacity:0.6}
+.footer-disclaimer{font-size:0.8em;opacity:0.5;margin-top:10px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+/* 响应式 */
 @media(max-width:768px){
   .hero h1{font-size:1.8em}
   .hero-stats{gap:15px}
@@ -100,9 +137,14 @@ footer p{margin-top:15px;font-size:0.85em;opacity:0.6}
   .section-title{font-size:1.6em}
   .pricing-card.popular{transform:none}
 }
+
+/* 制造业线索漏斗 */
+.mfg-funnel{padding:80px 0;background:#f0f7f0;text-align:center}
 </style>
 </head>
 <body>
+
+<!-- 导航栏 -->
 <header>
   <nav class="container">
     <div class="logo">🚀 AI办公效率助手</div>
@@ -113,29 +155,33 @@ footer p{margin-top:15px;font-size:0.85em;opacity:0.6}
     </div>
   </nav>
 </header>
+
+<!-- 首屏英雄区 -->
 <section class="hero">
   <div class="container">
     <div class="report-badge">📊 基于23份行业报告深度分析</div>
-    <h1>项目经理每天5个会<br>AI帮你节省3小时</h1>
-    <p class="subtitle">面向中小企业项目经理、部门主管和职场人，主打智能会议纪要整理和批量周报生成功能</p>
+    <h1>项目经理每天5个会，<br>AI帮你节省3小时</h1>
+    <p class="subtitle">专为中小企业项目经理、部门主管和职场人打造的AI办公效率工具。智能整理会议纪要、批量生成周报，让你把时间花在真正重要的事上。</p>
     <div class="hero-stats">
       <div class="stat-item"><span class="stat-number">281.6%</span><span class="stat-label">AI岗位需求增长</span></div>
       <div class="stat-item"><span class="stat-number">43:1</span><span class="stat-label">AI人才供需比</span></div>
       <div class="stat-item"><span class="stat-number">53.2%</span><span class="stat-label">AI薪资涨幅</span></div>
     </div>
-    <a href="tool.html" class="cta-button">🚀 立即免费使用 →</a>
-    <p style="margin-top:12px;font-size:0.85em;opacity:0.7">无需注册，打开即用</p>
+    <a href="02-输出成果/tool.html" class="cta-button">🚀 立即免费使用 →</a>
+    <p style="margin-top:12px;font-size:0.85em;opacity:0.7">无需注册，打开即用 · 已帮助用户节省 <span id="totalHours">0</span> 小时</p>
   </div>
 </section>
+
+<!-- 功能区 -->
 <section class="features" id="features">
   <div class="container">
-    <h2 class="section-title">三大核心功能</h2>
-    <p class="section-subtitle">专为中小企业和职场人打造的AI办公效率工具</p>
+    <h2 class="section-title">核心功能</h2>
+    <p class="section-subtitle">解决报告中指出的中小企业"三缺"痛点：缺资金、缺技术、缺人才</p>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">🎤</div>
         <h3>智能会议纪要</h3>
-        <p>上传录音或文本，AI自动识别重点、提取行动项、生成结构化纪要。项目经理每天节省2小时。</p>
+        <p>上传会议录音或文本，AI自动识别重点、提取行动项、生成结构化纪要。项目经理每天节省2小时。</p>
         <span class="report-tag">猎聘报告：AI效率提升场景</span>
       </div>
       <div class="feature-card">
@@ -147,39 +193,43 @@ footer p{margin-top:15px;font-size:0.85em;opacity:0.6}
       <div class="feature-card">
         <div class="feature-icon">📈</div>
         <h3>效率数据分析</h3>
-        <p>记录使用数据，可视化展示节省时间和效率提升。用数据证明AI工具价值。</p>
+        <p>记录你的使用数据，可视化展示节省时间和效率提升。用数据证明AI工具的价值。</p>
         <span class="report-tag">十五五规划：数据驱动决策</span>
       </div>
     </div>
   </div>
 </section>
+
+<!-- 数据证言区 -->
 <section class="testimonials">
   <div class="container">
     <h2 class="section-title">数据说话</h2>
-    <p class="section-subtitle">基于行业报告的真实数据</p>
+    <p class="section-subtitle">所有关键决策均有行业报告支撑</p>
     <div class="testimonial-grid">
       <div class="testimonial-card">
         <div class="testimonial-data">281.6%</div>
-        <div class="testimonial-text">AI岗位需求爆发增长，办公效率工具是AI落地最直接场景</div>
-        <div class="testimonial-source">来源：猎聘2025年度人才供需趋势报告</div>
+        <div class="testimonial-text">AI相关岗位需求爆发性增长，办公效率工具是AI落地最直接的场景</div>
+        <div class="testimonial-source">—— 猎聘2025年度人才供需趋势报告</div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-data">缺资金·缺技术·缺人才</div>
-        <div class="testimonial-text">中小企业数字化三大障碍，零成本AI工具是最佳切入点</div>
-        <div class="testimonial-source">来源：2026两会政府工作报告</div>
+        <div class="testimonial-text">中小企业数字化转型面临三大核心障碍，零成本AI工具是最佳切入点</div>
+        <div class="testimonial-source">—— 2026年两会政府工作报告</div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-data">年费1K-5K</div>
-        <div class="testimonial-text">中小制造企业对SaaS工具的最佳接受区间，定价远低于此</div>
-        <div class="testimonial-source">来源：AI产业十五五展望报告</div>
+        <div class="testimonial-text">中小制造企业对SaaS工具的最佳接受区间，我们的定价远低于此</div>
+        <div class="testimonial-source">—— 人工智能产业十五五展望报告</div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- 定价区 -->
 <section class="pricing" id="pricing">
   <div class="container">
-    <h2 class="section-title">简单透明的定价</h2>
-    <p class="section-subtitle">据猎聘报告，个人效率工具年付费意愿中位数¥200-300，Pro定价为市场均价的1/3</p>
+    <h2 class="section-title">透明定价</h2>
+    <p class="section-subtitle">每天不到1元，让AI为你打工</p>
     <div class="pricing-grid">
       <div class="pricing-card">
         <h3>免费版</h3>
@@ -190,28 +240,30 @@ footer p{margin-top:15px;font-size:0.85em;opacity:0.6}
           <li>每月5份周报生成</li>
           <li>基础效率统计</li>
         </ul>
-        <a href="tool.html" class="pricing-button">免费使用</a>
+        <a href="02-输出成果/tool.html" class="pricing-button">开始使用</a>
       </div>
       <div class="pricing-card popular">
         <div class="popular-badge">🔥 最受欢迎</div>
         <h3>Pro版</h3>
         <div class="price">¥29</div>
-        <div class="price-unit">/月（年付¥199，省149元）</div>
+        <div class="price-unit">每月 / ¥199每年（省149元）</div>
         <ul class="pricing-features">
           <li>无限次会议纪要</li>
-          <li>无限份周报生成</li>
+          <li>无限次周报生成</li>
           <li>高级效率分析</li>
           <li>行业模板优先更新</li>
           <li>优先技术支持</li>
         </ul>
-        <a href="tool.html" class="pricing-button">升级Pro</a>
+        <a href="#payment" class="pricing-button">立即升级</a>
       </div>
     </div>
     <div class="data-source">
-      <p>📊 定价依据：据猎聘报告，个人效率工具年付费意愿中位数¥200-300，Pro定价¥199/年，为市场均价的1/3</p>
+      <strong>💡 定价依据：</strong>据猎聘报告，AI薪资中位数上涨53.2%，个人效率工具年付费意愿中位数¥200-300。我们的定价仅为市场均价的1/3。
     </div>
   </div>
 </section>
+
+<!-- 制造业线索漏斗 -->
 <section class="mfg-funnel" id="mfg-funnel">
   <div class="container">
     <h2 class="section-title">为团队或产线寻求更强大的功能？</h2>
@@ -262,40 +314,100 @@ footer p{margin-top:15px;font-size:0.85em;opacity:0.6}
     </div>
   </div>
 </section>
+<!-- 支付方式区 -->
 <section class="payment-methods" id="payment">
   <div class="container">
     <h2 class="section-title">支付方式</h2>
     <p class="section-subtitle">选择最适合你的方式</p>
     <div class="payment-grid">
       <div class="payment-card">
-        <h4>📱 微信赞赏码（推荐）</h4>
-        <div class="qr-placeholder">赞赏码图片</div>
+        <h4>💚 微信赞赏码（推荐）</h4>
+        <img src="04-参考资料/IMG_321[1].png" alt="赞赏码" style="width:200px; height:auto;">
         <p>扫码支付¥29，截图发至公众号/私信，24小时内开通Pro</p>
       </div>
       <div class="payment-card">
-        <h4>💬 微信转账</h4>
-        <div class="qr-placeholder">二维码图片</div>
+        <h4>📱 微信转账</h4>
+        <img src="04-参考资料/image_115556615[2].jpg" alt="转账码" style="width:200px; height:auto;">
         <p>添加微信好友直接转账，备注"Pro升级"</p>
       </div>
       <div class="payment-card">
         <h4>🔄 自动开通（开发中）</h4>
-        <div class="qr-placeholder">即将上线</div>
-        <p>微信支付自动开通Pro权限，预计2026年Q3上线</p>
+        <p style="padding:40px 0">微信支付自动开通Pro权限<br><small style="color:#999">预计2026年Q3上线</small></p>
       </div>
     </div>
   </div>
 </section>
+
+<!-- 注册区 -->
 <section class="early-access" id="early-access">
   <div class="container">
     <h2 class="section-title">成为早期测试者</h2>
     <p class="section-subtitle">注册即可免费使用，前100名获永久Pro权限</p>
     <div class="early-access-form">
       <div class="early-bonus">🎁 早期测试者特权：永久Pro权限，只需每月提交一次使用反馈</div>
-      <a href="https://jinshuju.net/f/你的表单ID" target="_blank" class="submit-button">立即注册，开始免费使用 →</a>
+      <form id="regForm">
+        <div class="form-group">
+          <label>姓名 *</label>
+          <input type="text" id="fname" placeholder="请输入你的姓名" required>
+        </div>
+        <div class="form-group">
+          <label>邮箱 *</label>
+          <input type="email" id="femail" placeholder="用于接收工具链接和使用指南" required>
+        </div>
+        <div class="form-group">
+          <label>行业 *</label>
+          <select id="findustry" required>
+            <option value="">请选择你的行业</option>
+            <option value="互联网/科技">互联网/科技</option>
+            <option value="制造业">制造业</option>
+            <option value="建筑工程">建筑工程</option>
+            <option value="金融/保险">金融/保险</option>
+            <option value="教育/培训">教育/培训</option>
+            <option value="医疗/健康">医疗/健康</option>
+            <option value="电商/零售">电商/零售</option>
+            <option value="物流/供应链">物流/供应链</option>
+            <option value="政府/事业单位">政府/事业单位</option>
+            <option value="咨询/专业服务">咨询/专业服务</option>
+            <option value="媒体/内容">媒体/内容</option>
+            <option value="房地产">房地产</option>
+            <option value="农业/食品">农业/食品</option>
+            <option value="自由职业">自由职业</option>
+            <option value="在校学生">在校学生</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>职位 *</label>
+          <select id="fposition" required>
+            <option value="">请选择你的职位</option>
+            <option value="项目经理/PMO">项目经理/PMO</option>
+            <option value="部门主管/总监">部门主管/总监</option>
+            <option value="车间主任/产线管理">车间主任/产线管理</option>
+            <option value="行政/人事">行政/人事</option>
+            <option value="产品经理">产品经理</option>
+            <option value="工程师/技术人员">工程师/技术人员</option>
+            <option value="运营/市场">运营/市场</option>
+            <option value="财务/会计">财务/会计</option>
+            <option value="设计师">设计师</option>
+            <option value="销售/商务">销售/商务</option>
+            <option value="创业者/企业主">创业者/企业主</option>
+            <option value="自由职业者">自由职业者</option>
+            <option value="在校学生">在校学生</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>你最希望AI帮你解决什么问题？（选填）</label>
+          <input type="text" id="fpain" placeholder="例如：每天花2小时整理会议纪要">
+        </div>
+        <button type="submit" class="submit-button">立即注册，开始免费使用 →</button>
+      </form>
       <p style="margin-top:15px;font-size:0.82em;color:#999">注册即表示同意接收产品更新邮件，绝不发送垃圾信息</p>
     </div>
   </div>
 </section>
+
+<!-- 页脚 -->
 <footer>
   <div class="container">
     <div class="footer-links">
@@ -307,28 +419,120 @@ footer p{margin-top:15px;font-size:0.85em;opacity:0.6}
     <p>© 2026 AI办公效率助手 · 在校大学生创业项目</p>
     <div class="footer-disclaimer">
       本产品由在校大学生独立开发运营，基于行业报告数据提供AI办公效率工具。所有数据引用均注明来源报告。<br>
-      联系邮箱：15902234202@163.com
+      如有疑问请联系：15902234202@163.com
     </div>
   </div>
 </footer>
+<!-- 免费访问统计（不蒜子） -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div style="text-align:center;padding:10px 0;font-size:0.8em;color:#999;">
+  <span id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+  &nbsp;|&nbsp;
+  <span id="busuanzi_container_site_uv">访客数 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+
+<!-- 用量弹窗 -->
 <div class="modal-overlay" id="usageModal">
   <div class="modal-content">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <h3>🎉 你已使用AI办公效率助手</h3>
-    <div class="savings" id="savedHours">0小时</div>
-    <p>根据猎聘报告AI时薪中位数¥150计算<br>你已节省价值约 <strong id="savedMoney">¥0</strong> 的时间</p>
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <h3>🎉 你已使用免费额度</h3>
+    <div class="savings" id="savedHours">3.5小时</div>
+    <p>根据猎聘报告数据，AI岗位时薪中位数约¥150。<br>你已节省的时间价值约 <strong id="savedMoney">¥525</strong></p>
+    <p>解锁无限次使用，让你的效率持续领先 👇</p>
     <button class="upgrade-btn" onclick="closeModal()">升级Pro版 ¥29/月</button>
     <p style="margin-top:12px;font-size:0.8em;color:#999">或继续使用免费版（每月重置额度）</p>
   </div>
 </div>
+
 <script>
-function showModal(){document.getElementById("usageModal").classList.add("show");document.body.style.overflow="hidden"}
-function closeModal(){document.getElementById("usageModal").classList.remove("show");document.body.style.overflow=""}
-var usageCount=parseInt(localStorage.getItem("usageCount")||"0");
-function trackUsage(){usageCount++;localStorage.setItem("usageCount",usageCount);var hours=(usageCount*0.5).toFixed(1);var money=Math.round(hours*150);document.getElementById("savedHours").textContent=hours+"小时";document.getElementById("savedMoney").textContent="¥"+money;if(usageCount>=10){showModal()}}
-document.querySelectorAll('a[href^="#"]').forEach(function(anchor){anchor.addEventListener("click",function(e){e.preventDefault();var target=document.querySelector(this.getAttribute("href"));if(target){target.scrollIntoView({behavior:"smooth",block:"start"})}})});
-document.getElementById("mfgForm").addEventListener("submit",function(e){e.preventDefault();var company=document.getElementById("mfgCompany").value;var contact=document.getElementById("mfgContact").value;var needs=[];document.querySelectorAll("#mfgForm input[type=checkbox]:checked").forEach(function(cb){needs.push(cb.value)});alert("✅ 需求已收到！\n\n公司："+company+"\n联系人："+contact+"\n需求："+(needs.join("、")||"未选择")+"\n\n我们将在24小时内联系你讨论定制方案。");this.reset()});
-trackUsage();
+// 后端 API 地址
+var API_BASE = "https://backend-roan-pi-60.vercel.app";
+
+// 注册表单提交
+document.getElementById("regForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  var name = document.getElementById("fname").value;
+  var email = document.getElementById("femail").value;
+  var password = email; // MVP: 用邮箱作为默认密码
+
+  var submitBtn = this.querySelector("button[type='submit']");
+  var originalText = submitBtn.textContent;
+  submitBtn.textContent = "注册中...";
+  submitBtn.disabled = true;
+
+  fetch(API_BASE + "/api/auth/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name: name, email: email, password: password })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.error) {
+      alert("❌ " + data.error);
+    } else {
+      // 保存 token
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      var msg = "✅ 注册成功！\n\n";
+      msg += "欢迎 " + data.user.name + "！\n";
+      msg += "邮箱：" + data.user.email + "\n\n";
+      msg += "前100名用户享受永久Pro权限！";
+      alert(msg);
+      document.getElementById("regForm").reset();
+    }
+  })
+  .catch(function(err) {
+    alert("❌ 网络错误，请稍后重试");
+    console.error(err);
+  })
+  .finally(function() {
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  });
+});
+
+// 用量弹窗
+function showModal() {
+  document.getElementById("usageModal").classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+function closeModal() {
+  document.getElementById("usageModal").classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+// 用量统计模拟
+var usageCount = 0;
+function trackUsage() {
+  usageCount++;
+  var hours = (usageCount * 0.5).toFixed(1);
+  var money = Math.round(hours * 150);
+  document.getElementById("savedHours").textContent = hours + "小时";
+  document.getElementById("savedMoney").textContent = "¥" + money;
+  if (usageCount >= 10) { showModal(); }
+}
+
+// 平滑滚动
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+  anchor.addEventListener("click", function(e) {
+    e.preventDefault();
+    var target = document.querySelector(this.getAttribute("href"));
+    if (target) { target.scrollIntoView({ behavior: "smooth", block: "start" }); }
+  });
+});
+
+// 制造业线索表单提交
+document.getElementById("mfgForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  var company = document.getElementById("mfgCompany").value;
+  var contact = document.getElementById("mfgContact").value;
+  var needs = [];
+  document.querySelectorAll("#mfgForm input[type=checkbox]:checked").forEach(function(cb) { needs.push(cb.value); });
+
+  alert("✅ 需求已收到！\n\n公司：" + company + "\n联系人：" + contact + "\n需求：" + (needs.join("、") || "未选择") + "\n\n我们将在24小时内联系你讨论定制方案。");
+  this.reset();
+});
 </script>
 </body>
 </html>
