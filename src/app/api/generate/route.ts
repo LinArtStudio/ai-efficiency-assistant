@@ -18,9 +18,10 @@ export async function POST(request: Request) {
       )
     }
 
+    // 输入长度校验
     if (content.length > 5000) {
       return NextResponse.json(
-        { error: '内容过长，请控制在5000字以内' },
+        { error: '输入内容过长，请控制在5000字以内' },
         { status: 400 }
       )
     }
@@ -51,18 +52,15 @@ export async function POST(request: Request) {
         result = await translateText(content, template || 'auto')
         break
       default:
-        return NextResponse.json(
-          { error: '不支持的类型' },
-          { status: 400 }
-        )
+        return NextResponse.json({ error: '不支持的类型' }, { status: 400 })
     }
 
     return NextResponse.json({ result })
   } catch (error: unknown) {
     console.error('生成失败:', error)
-    const message = error instanceof Error ? error.message : '生成失败，请稍后重试'
+    const errorMessage = error instanceof Error ? error.message : '生成失败，请稍后重试'
     return NextResponse.json(
-      { error: message },
+      { error: errorMessage },
       { status: 500 }
     )
   }
