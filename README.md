@@ -1,23 +1,20 @@
-# AI周报助手
+# 职场AI效率工具箱 🚀
 
-> 用AI 3分钟生成专业周报，让你准时下班
+> 周报/邮件/会议纪要，一键搞定
 
-## 功能特点
+一个专为职场人打造的AI效率工具，帮你节省80%的文书工作时间。
 
-- ⚡ **极速生成**：3分钟生成完整周报
-- 🎯 **智能优化**：AI自动提炼亮点，突出工作成果
-- 📄 **多格式导出**：支持Word、纯文本一键导出
-- 🎨 **多模板选择**：标准、项目、简洁三种模板
-- 💰 **免费使用**：每日3次免费额度
+## ✨ 核心功能
 
-## 技术栈
+| 功能 | 说明 | 节省时间 |
+|------|------|----------|
+| 📊 **AI周报** | 一键生成专业周报 | 2-3小时/周 |
+| 🎤 **会议纪要** | 自动提取会议要点 | 1-2小时/次 |
+| ✉️ **AI邮件** | 生成专业商务邮件 | 30分钟/封 |
+| ✨ **文案润色** | 优化文案表达 | 20分钟/篇 |
+| 🌐 **AI翻译** | 中英文互译 | 15分钟/篇 |
 
-- **前端**：Next.js 14 + React 18 + Tailwind CSS
-- **后端**：Next.js API Routes
-- **AI**：OpenAI GPT-4 / 文心一言 / 通义千问
-- **部署**：Vercel / Cloudflare Pages
-
-## 快速开始
+## 🚀 快速开始
 
 ### 1. 安装依赖
 
@@ -27,25 +24,24 @@ npm install
 
 ### 2. 配置环境变量
 
-复制 `.env.example` 为 `.env.local`，填入你的API密钥：
+复制 `.env.example` 为 `.env.local`：
 
 ```bash
 cp .env.example .env.local
 ```
 
-编辑 `.env.local`：
+编辑 `.env.local`，填入你的API Key：
 
 ```env
-# OpenAI API Key
-OPENAI_API_KEY=sk-your-api-key-here
+# 智谱AI (GLM-4) - 推荐，免费额度大
+OPENAI_API_KEY=你的智谱API Key
+OPENAI_BASE_URL=https://open.bigmodel.cn/api/paas/v4
+AI_MODEL=glm-4-flash
 
-# 或者使用文心一言
-# OPENAI_BASE_URL=https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop
-# OPENAI_API_KEY=your-wenxin-key
-
-# 或者使用通义千问
-# OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
-# OPENAI_API_KEY=your-dashscope-key
+# 或者 DeepSeek
+# OPENAI_API_KEY=你的DeepSeek Key
+# OPENAI_BASE_URL=https://api.deepseek.com/v1
+# AI_MODEL=deepseek-chat
 ```
 
 ### 3. 启动开发服务器
@@ -63,51 +59,59 @@ npm run build
 npm start
 ```
 
-## 部署到Vercel
+## 📦 技术栈
+
+- **前端**：Next.js 14 + React 18 + Tailwind CSS
+- **后端**：Next.js API Routes
+- **AI**：智谱GLM-4 / DeepSeek / OpenAI
+- **部署**：Vercel / Cloudflare Pages
+
+## 🌐 部署到Vercel
 
 1. Fork 本仓库
 2. 登录 [vercel.com](https://vercel.com)
 3. 点击 "New Project" → 选择你的仓库
-4. 添加环境变量：`OPENAI_API_KEY`
+4. 添加环境变量：
+   - `OPENAI_API_KEY`
+   - `OPENAI_BASE_URL`
+   - `AI_MODEL`
 5. 点击 "Deploy"
 
-## 部署到Cloudflare Pages
-
-1. 运行 `npm run build`
-2. 登录 [dash.cloudflare.com](https://dash.cloudflare.com)
-3. 点击 "Workers & Pages" → "Create Application" → "Pages"
-4. 上传 `out` 文件夹
-5. 添加环境变量
-
-## 目录结构
+## 📂 项目结构
 
 ```
-ai-weekly-report/
+ai-efficiency-assistant/
 ├── src/
 │   ├── app/
-│   │   ├── api/
-│   │   │   ├── generate/route.ts  # AI生成API
-│   │   │   └── export/route.ts    # 导出API
-│   │   ├── generate/page.tsx      # 生成页面
-│   │   ├── layout.tsx             # 布局
-│   │   ├── page.tsx               # 首页
-│   │   └── globals.css            # 全局样式
+│   │   ├── api/generate/route.ts   # AI生成API
+│   │   ├── page.tsx                # 主页面
+│   │   ├── layout.tsx              # 布局
+│   │   └── globals.css             # 全局样式
 │   └── lib/
-│       └── ai.ts                  # AI接口
-├── public/                        # 静态资源
+│       └── ai.ts                   # AI接口封装
+├── public/                         # 静态资源
+├── .env.example                    # 环境变量模板
 ├── package.json
 ├── tailwind.config.ts
 └── tsconfig.json
 ```
 
-## 许可证
+## 💰 商业模式
 
-MIT License
+| 版本 | 价格 | 功能 |
+|------|------|------|
+| **免费版** | ¥0 | 每天5次生成 |
+| **Pro版** | ¥19/月 | 无限次 + 高级模板 |
+| **团队版** | ¥99/月 | 多人协作 + 企业管理 |
 
-## 联系方式
+## 📱 联系方式
 
 - 小红书：@AI效率官
 - 微信：添加客服微信
+
+## 📜 许可证
+
+MIT License
 
 ---
 

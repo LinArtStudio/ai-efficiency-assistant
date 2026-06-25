@@ -1,6 +1,6 @@
 {
-  "name": "ai-weekly-report",
-  "version": "1.0.0",
+  "name": "ai-work-efficiency",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

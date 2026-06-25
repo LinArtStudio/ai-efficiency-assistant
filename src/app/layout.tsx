@@ -1,12 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
-
 export const metadata: Metadata = {
-  title: 'AI周报助手 - 3分钟生成专业周报',
-  description: '用AI 3分钟生成专业周报，让你准时下班。支持文字、语音输入，多模板选择，一键导出Word/PDF。',
+  title: '职场AI提效工具箱 - 周报/会议纪要/邮件/润色/翻译',
+  description: '职场人的AI效率工具箱，一键生成专业周报、会议纪要、商务邮件，支持文案润色和中英翻译。免费使用！',
+  keywords: 'AI周报,会议纪要,AI邮件,文案润色,AI翻译,职场效率,办公工具',
 }
 
 export default function RootLayout({
@@ -16,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   )
 }
