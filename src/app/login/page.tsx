@@ -56,7 +56,7 @@ export default function LoginPage() {
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
         <div className="max-w-md w-full mx-4">
           <div className="bg-white rounded-xl shadow-md p-8 text-center">
-            <h1 className="text-2xl font-bold text-blue-600 mb-4">🚀 职场AI效率工具箱</h1>
+            <h1 className="text-2xl font-bold text-blue-600 mb-4">🚀 职场AI提效工具</h1>
             <p className="text-gray-500 mb-6">登录功能暂未开放</p>
             <Link
               href="/"

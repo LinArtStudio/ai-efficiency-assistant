@@ -207,7 +207,7 @@ export default function Home() {
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-4">
-          <h1 className="text-2xl font-bold text-blue-600">🚀 职场AI效率工具箱</h1>
+          <h1 className="text-2xl font-bold text-blue-600">🚀 职场AI提效工具</h1>
           <p className="text-gray-500 mt-1">周报/邮件/会议纪要，一键搞定</p>
         </div>
       </header>
@@ -368,7 +368,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-50 mt-12">
         <div className="max-w-6xl mx-auto px-4 py-6 text-center text-gray-500">
-          <p>© 2026 职场AI效率工具箱 - 让每个人都用得起AI</p>
+          <p>© 2026 职场AI提效工具 - 让每个人都用得起AI</p>
         </div>
       </footer>
     </div>

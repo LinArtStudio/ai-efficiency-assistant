@@ -74,7 +74,7 @@ export default function DashboardPage() {
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
         <div className="max-w-md w-full mx-4">
           <div className="bg-white rounded-xl shadow-md p-8 text-center">
-            <h1 className="text-2xl font-bold text-blue-600 mb-4">🚀 职场AI效率工具箱</h1>
+            <h1 className="text-2xl font-bold text-blue-600 mb-4">🚀 职场AI提效工具</h1>
             <p className="text-gray-500 mb-6">用户系统暂未开放</p>
             <Link
               href="/"
@@ -93,7 +93,7 @@ export default function DashboardPage() {
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
         <div className="max-w-md w-full mx-4">
           <div className="bg-white rounded-xl shadow-md p-8 text-center">
-            <h1 className="text-2xl font-bold text-blue-600 mb-4">🚀 职场AI效率工具箱</h1>
+            <h1 className="text-2xl font-bold text-blue-600 mb-4">🚀 职场AI提效工具</h1>
             <p className="text-gray-500 mb-6">请先登录后使用完整功能</p>
             <Link
               href="/login"
@@ -111,7 +111,7 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <header className="bg-white shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-blue-600">🚀 职场AI效率工具箱</h1>
+          <h1 className="text-2xl font-bold text-blue-600">🚀 职场AI提效工具</h1>
           <button
             onClick={handleLogout}
             className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
