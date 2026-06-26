@@ -7,9 +7,28 @@ import {
   translateText
 } from '@/lib/ai'
 import { getSupabaseServerClient } from '@/lib/supabase-server'
+import { checkRateLimit, getRateLimitHeaders } from '@/lib/rate-limit'
 
 export async function POST(request: Request) {
   try {
+    // 获取客户端IP
+    const ip = request.headers.get('x-forwarded-for') || 
+               request.headers.get('x-real-ip') || 
+               'unknown'
+
+    // 检查频率限制（每分钟10次）
+    const rateLimit = checkRateLimit(ip, { windowMs: 60000, maxRequests: 10 })
+    
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: '请求过于频繁，请稍后再试', code: 'RATE_LIMITED' },
+        { 
+          status: 429,
+          headers: getRateLimitHeaders(rateLimit)
+        }
+      )
+    }
+
     const { type, content, template } = await request.json()
 
     if (!content || !content.trim()) {
@@ -116,7 +135,10 @@ export async function POST(request: Request) {
       }
     }
 
-    return NextResponse.json({ result })
+    return NextResponse.json(
+      { result },
+      { headers: getRateLimitHeaders(rateLimit) }
+    )
   } catch (error: unknown) {
     console.error('生成失败:', error)
     const errorMessage = error instanceof Error ? error.message : '生成失败，请稍后重试'
