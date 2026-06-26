@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://114.55.110.19/efficiency/sitemap.xml
