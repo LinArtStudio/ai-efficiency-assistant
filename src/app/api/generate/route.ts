@@ -8,6 +8,7 @@ import {
 } from '@/lib/ai'
 import { getSupabaseServerClient } from '@/lib/supabase-server'
 import { checkRateLimit, getRateLimitHeaders } from '@/lib/rate-limit'
+import { generateCacheKey, getFromCache, setCache } from '@/lib/cache'
 
 export async function POST(request: Request) {
   try {
@@ -97,6 +98,17 @@ export async function POST(request: Request) {
       console.warn('Supabase check failed:', e)
     }
 
+    // 检查缓存
+    const cacheKey = generateCacheKey(type, content, template)
+    const cachedResult = getFromCache(cacheKey)
+    
+    if (cachedResult) {
+      return NextResponse.json(
+        { result: cachedResult, cached: true },
+        { headers: getRateLimitHeaders(rateLimit) }
+      )
+    }
+
     // 生成内容
     let result = ''
 
@@ -120,6 +132,9 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: '不支持的类型' }, { status: 400 })
     }
 
+    // 存入缓存
+    setCache(cacheKey, result)
+
     // 记录使用情况（如果Supabase配置了）
     if (userId) {
       try {
@@ -136,7 +151,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(
-      { result },
+      { result, cached: false },
       { headers: getRateLimitHeaders(rateLimit) }
     )
   } catch (error: unknown) {
