@@ -6,6 +6,7 @@ import {
   polishText,
   translateText
 } from '@/lib/ai'
+import { getSupabaseServerClient } from '@/lib/supabase-server'
 
 export async function POST(request: Request) {
   try {
@@ -33,6 +34,51 @@ export async function POST(request: Request) {
       )
     }
 
+    // 尝试获取用户信息（如果Supabase配置了）
+    let userId: string | null = null
+    let isPro = false
+
+    try {
+      const supabase = await getSupabaseServerClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      if (user) {
+        userId = user.id
+        
+        // 检查用户是否为Pro
+        const { data: profile } = await supabase
+          .from('user_profiles')
+          .select('plan, plan_expires_at')
+          .eq('id', userId)
+          .single()
+        
+        if (profile) {
+          isPro = profile.plan === 'pro' && 
+                  (!profile.plan_expires_at || new Date(profile.plan_expires_at) > new Date())
+        }
+        
+        // 检查免费用户今日使用次数
+        if (!isPro) {
+          const { count } = await supabase
+            .from('usage_records')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', userId)
+            .gte('created_at', new Date().toISOString().slice(0, 10))
+          
+          if (count && count >= 3) {
+            return NextResponse.json(
+              { error: '今日免费额度已用完，升级Pro无限使用', code: 'QUOTA_EXCEEDED' },
+              { status: 429 }
+            )
+          }
+        }
+      }
+    } catch (e) {
+      // Supabase未配置或查询失败，继续执行
+      console.warn('Supabase check failed:', e)
+    }
+
+    // 生成内容
     let result = ''
 
     switch (type) {
@@ -53,6 +99,21 @@ export async function POST(request: Request) {
         break
       default:
         return NextResponse.json({ error: '不支持的类型' }, { status: 400 })
+    }
+
+    // 记录使用情况（如果Supabase配置了）
+    if (userId) {
+      try {
+        const supabase = await getSupabaseServerClient()
+        await supabase.from('usage_records').insert({
+          user_id: userId,
+          type,
+          content_length: content.length,
+          template: template || null
+        })
+      } catch (e) {
+        console.warn('Failed to record usage:', e)
+      }
     }
 
     return NextResponse.json({ result })
