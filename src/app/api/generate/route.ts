@@ -4,7 +4,11 @@ import {
   generateMeetingMinutes,
   generateEmail,
   polishText,
-  translateText
+  translateText,
+  generatePPT,
+  summarizeDocument,
+  analyzeData,
+  checkContentQuality
 } from '@/lib/ai'
 import { getSupabaseServerClient } from '@/lib/supabase-server'
 import { checkRateLimit, getRateLimitHeaders } from '@/lib/rate-limit'
@@ -128,6 +132,18 @@ export async function POST(request: Request) {
       case 'translate':
         result = await translateText(content, template || 'auto')
         break
+      case 'ppt':
+        result = await generatePPT(content, template || 'business')
+        break
+      case 'summary':
+        result = await summarizeDocument(content)
+        break
+      case 'data':
+        result = await analyzeData(content, template || 'trend')
+        break
+      case 'quality-check':
+        result = await checkContentQuality(content, template || 'weekly')
+        break
       default:
         return NextResponse.json({ error: '不支持的类型' }, { status: 400 })
     }
@@ -155,10 +171,11 @@ export async function POST(request: Request) {
       { headers: getRateLimitHeaders(rateLimit) }
     )
   } catch (error: unknown) {
+    // 服务端记录详细错误
     console.error('生成失败:', error)
-    const errorMessage = error instanceof Error ? error.message : '生成失败，请稍后重试'
+    // 客户端只返回通用错误信息，不泄露内部细节
     return NextResponse.json(
-      { error: errorMessage },
+      { error: '生成失败，请稍后重试' },
       { status: 500 }
     )
   }

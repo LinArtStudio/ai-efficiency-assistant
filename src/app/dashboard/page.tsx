@@ -130,9 +130,9 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
           <Link
-            href="/"
+            href="/?module=weekly"
             className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all"
           >
             <div className="text-3xl mb-4">📊</div>
@@ -141,7 +141,7 @@ export default function DashboardPage() {
           </Link>
 
           <Link
-            href="/"
+            href="/?module=meeting"
             className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all"
           >
             <div className="text-3xl mb-4">🎤</div>
@@ -150,7 +150,7 @@ export default function DashboardPage() {
           </Link>
 
           <Link
-            href="/"
+            href="/?module=email"
             className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all"
           >
             <div className="text-3xl mb-4">✉️</div>
@@ -159,12 +159,39 @@ export default function DashboardPage() {
           </Link>
 
           <Link
-            href="/"
+            href="/?module=polish"
             className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all"
           >
             <div className="text-3xl mb-4">✨</div>
             <h3 className="text-lg font-bold mb-2">文案润色</h3>
             <p className="text-gray-500">优化文案表达</p>
+          </Link>
+
+          <Link
+            href="/?module=ppt"
+            className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all"
+          >
+            <div className="text-3xl mb-4">📽️</div>
+            <h3 className="text-lg font-bold mb-2">AI PPT</h3>
+            <p className="text-gray-500">一键生成PPT大纲和内容</p>
+          </Link>
+
+          <Link
+            href="/?module=summary"
+            className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all"
+          >
+            <div className="text-3xl mb-4">📄</div>
+            <h3 className="text-lg font-bold mb-2">文档总结</h3>
+            <p className="text-gray-500">智能提取文档要点</p>
+          </Link>
+
+          <Link
+            href="/?module=data"
+            className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all"
+          >
+            <div className="text-3xl mb-4">📈</div>
+            <h3 className="text-lg font-bold mb-2">数据分析</h3>
+            <p className="text-gray-500">AI智能分析数据趋势</p>
           </Link>
         </div>
       </main>
