@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { SUPPORTED_MODELS, getSelectedModel, saveSelectedModel, ModelConfig } from '@/lib/models'
 import { getInviteLink, getReferralStats, checkReferralFromUrl, recordReferral } from '@/lib/referral'
 import PushNotificationButton from '@/components/PushNotificationButton'
+import MobileNav from '@/components/MobileNav'
 import CalendarImport from '@/components/CalendarImport'
 import CostDisplay from '@/components/CostDisplay'
 
@@ -438,6 +439,12 @@ export default function Home() {
                 </option>
               ))}
             </select>
+            <a
+              href="/pricing"
+              className="px-4 py-2 text-sm bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all font-medium"
+            >
+              ⭐ Pro
+            </a>
             <button
               onClick={() => setShowHistory(true)}
               className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
@@ -818,6 +825,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 移动端底部导航 */}
+      <MobileNav activeModule={activeModule} onModuleChange={handleModuleSwitch} />
 
       {/* Footer */}
       <footer className="bg-gray-50 mt-12">

@@ -89,7 +89,7 @@ export async function POST(request: Request) {
             .eq('user_id', userId)
             .gte('created_at', new Date().toISOString().slice(0, 10))
           
-          if (count && count >= 3) {
+          if (count && count >= 5) {
             return NextResponse.json(
               { error: '今日免费额度已用完，升级Pro无限使用', code: 'QUOTA_EXCEEDED' },
               { status: 429 }
