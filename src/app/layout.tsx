@@ -9,9 +9,9 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: '职场AI提效工具 - 8大AI功能让工作效率翻倍',
-  description: '职场人的AI提效工具，支持AI周报、PPT生成、会议纪要、商务邮件、文案润色、AI翻译、文档总结、数据分析。免费使用！',
-  keywords: 'AI周报,AI PPT,会议纪要,AI邮件,文案润色,AI翻译,文档总结,数据分析,职场效率,办公工具',
+  title: '职场AI提效工具 - 周报/会议纪要/邮件，一键搞定',
+  description: '职场人的AI提效工具，一键生成专业周报、会议纪要、商务邮件。免费使用！',
+  keywords: 'AI周报,会议纪要,AI邮件,职场效率,办公工具',
   manifest: '/manifest.json',
   icons: {
     icon: '/icons/icon-192x192.svg',

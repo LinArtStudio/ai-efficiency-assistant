@@ -411,7 +411,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-center md:text-left">
             <h1 className="text-2xl font-bold text-blue-600">🚀 职场AI提效工具</h1>
-            <p className="text-gray-500 mt-1">8大AI功能，让工作效率翻倍</p>
+            <p className="text-gray-500 mt-1">周报/会议纪要/邮件，一键搞定</p>
           </div>
           <div className="flex items-center gap-2">
             <select
