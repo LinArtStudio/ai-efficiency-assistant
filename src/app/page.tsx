@@ -8,42 +8,28 @@ import MobileNav from '@/components/MobileNav'
 import CalendarImport from '@/components/CalendarImport'
 import CostDisplay from '@/components/CostDisplay'
 
-// 功能模块配置
+// 功能模块配置 - 核心功能（3个）
 const modules = [
   { id: 'weekly', name: '📊 AI周报', placeholder: '粘贴本周工作内容，AI帮你生成专业周报...', templates: [
     { id: 'standard', name: '标准格式' },
     { id: 'project', name: '项目格式' },
-    { id: 'simple', name: '简洁格式' },
-    { id: 'data', name: '数据驱动' },
-    { id: 'sales', name: '销售团队' },
-    { id: 'tech', name: '技术团队' },
-    { id: 'marketing', name: '市场团队' },
-    { id: 'hr', name: 'HR团队' },
-    { id: 'product', name: '产品团队' }
+    { id: 'simple', name: '简洁格式' }
   ]},
   { id: 'meeting', name: '🎤 会议纪要', placeholder: '粘贴会议内容或录音转写，AI帮你提取要点...' },
   { id: 'email', name: '✉️ AI邮件', placeholder: '描述邮件需求，AI帮你生成专业邮件...', templates: [
     { id: 'business', name: '商务邮件' },
     { id: 'follow_up', name: '跟进邮件' },
     { id: 'thank_you', name: '感谢邮件' }
-  ]},
-  { id: 'polish', name: '✨ 文案润色', placeholder: '粘贴需要润色的文案，AI帮你优化表达...' },
-  { id: 'translate', name: '🌐 AI翻译', placeholder: '输入需要翻译的内容，自动识别中英文...', templates: [
-    { id: 'auto', name: '自动识别' },
-    { id: 'en2zh', name: '英→中' },
-    { id: 'zh2en', name: '中→英' }
-  ]},
-  { id: 'ppt', name: '📊 AI PPT', placeholder: '描述PPT主题和内容要点，AI帮你生成PPT大纲和内容...', templates: [
-    { id: 'business', name: '商务汇报' },
-    { id: 'project', name: '项目总结' },
-    { id: 'training', name: '培训课件' }
-  ]},
-  { id: 'summary', name: '📄 文档总结', placeholder: '粘贴需要总结的文档内容，AI帮你提取要点...' },
-  { id: 'data', name: '📈 数据分析', placeholder: '粘贴CSV数据或描述数据特征，AI帮你生成分析报告...', templates: [
-    { id: 'trend', name: '趋势分析' },
-    { id: 'compare', name: '对比分析' },
-    { id: 'summary', name: '数据摘要' }
   ]}
+]
+
+// Coming Soon功能（展示但不可用）
+const comingSoonModules = [
+  { id: 'polish', name: '✨ 文案润色', icon: '✨' },
+  { id: 'translate', name: '🌐 AI翻译', icon: '🌐' },
+  { id: 'ppt', name: '📊 AI PPT', icon: '📊' },
+  { id: 'summary', name: '📄 文档总结', icon: '📄' },
+  { id: 'data', name: '📈 数据分析', icon: '📈' }
 ]
 
 // 使用统计接口
@@ -476,6 +462,19 @@ export default function Home() {
               }`}
             >
               {mod.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Coming Soon功能 */}
+        <div className="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
+          {comingSoonModules.map(mod => (
+            <button
+              key={mod.id}
+              disabled
+              className="px-4 py-2 rounded-lg font-medium whitespace-nowrap bg-gray-100 text-gray-400 cursor-not-allowed"
+            >
+              {mod.name} <span className="text-xs">Coming Soon</span>
             </button>
           ))}
         </div>
